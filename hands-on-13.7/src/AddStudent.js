@@ -1,6 +1,9 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
+import StudentContext from './StudentContext'
 
 export default function AddStudent(props) {
+
+    const context = useContext(StudentContext)
 
     const [formField, setFormField] = useState({
         year: '',
@@ -13,6 +16,10 @@ export default function AddStudent(props) {
             ...formField,
             [e.target.name]: e.target.value
         })
+    }
+
+    const addStudent = () => {
+        context.addStudent(formField.year, formField.gender, formField.graduated)
     }
 
     return (
@@ -62,6 +69,8 @@ export default function AddStudent(props) {
                     onChange={updateFormField} />
                 <label>No</label>
             </div>
+
+            <button onClick={addStudent}>Submit</button>
         </React.Fragment>
     )
 }

@@ -45,6 +45,16 @@ function App() {
       ]
 
       setStudents(cloned)
+    },
+    deleteStudent: (selectedId) => {
+      let index = students.findIndex(student => {
+        return student.id === selectedId
+      })
+      const cloned = [
+        ...students.slice(0, index),
+        ...students.slice(index + 1)
+      ]
+      setStudents(cloned)
     }
   }
 
